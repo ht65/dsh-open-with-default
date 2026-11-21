@@ -1,10 +1,12 @@
-# Default app chooser
+# 默认应用选择
 
-Choose which application DSH uses by default for each file type. This is a DSH-level override: it **does not** change the Windows default-app association, so Explorer and other programs keep their own setting.
+[中文](README.md) | [English](README.en.md)
 
-## Install
+在 DSH 内为每种文件类型选择默认打开的应用。这是 DSH 层面的覆盖，**不会修改 Windows 的系统默认应用**；资源管理器和其他程序仍保持各自的文件关联设置。
 
-This repository is a local DSH bundle (not an npm package). Requirements: DSH Desktop `0.2.2-rc.5` or newer on Windows, Git, and pnpm.
+## 安装
+
+本仓库是一个本地 DSH 插件包（不是 npm 包）。环境要求：Windows 上的 DSH Desktop `0.2.2-rc.5` 或更新版本、Git、pnpm。
 
 ```sh
 git clone https://github.com/ht65/dsh-open-with-default.git
@@ -12,25 +14,29 @@ cd dsh-open-with-default
 pnpm install --prod --ignore-scripts
 ```
 
-Then open **插件 / Plugins** in DSH, choose **添加插件 / Add plugin**, and select this directory. Restart DSH if the sidebar entry does not appear immediately after a first install.
+然后在 DSH 中打开 **插件 → 添加插件**，选择该目录。首次安装后如果左侧没有出现入口，重启 DSH 即可。
 
-## Use it
+## 使用方式
 
-### Left sidebar: 打开方式 / Open with
+### 左侧边栏「打开方式」
 
-Click **打开方式** in the left sidebar navigation to open the settings panel. It lists image, document, code, archive, and media extensions with their current DSH default. Each row can choose an application or follow the system default, and **Add another extension** accepts any simple extension for other DSH-supported file types.
+点击左侧导航中的 **打开方式**，打开设置页。页面按图片、文档、代码、压缩包、音视频分组列出 DSH 支持的文件扩展名，并显示当前的 DSH 默认应用。每一行都可以选择应用、取消设置或跟随系统默认；底部的 **添加其他扩展名** 可以添加其他 DSH 支持的文件类型。
 
-### File preview and right-click
+### 文件预览与右键菜单
 
-1. Open any file in the DSH document preview. A **设置默认 / Set default** pill appears in the preview header next to the native open split button. After the first read it shows the current DSH default (for example **默认：WorkBuddy / Default: WorkBuddy**, or **默认：系统 / Default: System**).
-2. Click it, choose an application, and save. The pill changes immediately, a toast confirms the save, and the native open split button refreshes its own label and icon in the background. Every later DSH open of that extension in any workspace starts that application.
-3. You can also right-click a workspace file and choose **设置 DSH 默认打开方式… / Set DSH default app…**.
+1. 在 DSH 中预览任意文件，标题栏的原生打开按钮旁会出现 **设置默认** 按钮。首次读取后，它会显示当前 DSH 默认，例如 **默认：WorkBuddy** 或 **默认：系统**。
+2. 点击它，选择应用并保存。标题栏按钮会立即更新，并显示保存提示；旁边的原生打开按钮会在后台刷新标签和图标。以后 DSH 在任何工作区打开该扩展名的文件，都会优先使用所选应用。
+3. 也可以右键工作区文件，选择 **设置 DSH 默认打开方式…**。
 
-## Scope and limits
+## 范围与限制
 
-- The override is keyed by the file extension, or by the exact name for files without an extension.
-- It only affects DSH's own open-in-app control, file context menu, and the **打开方式** settings panel; it never writes Windows `UserChoice` or other system associations.
-- If the chosen application is later uninstalled, DSH falls back to the operating-system default and the dialog marks the stale choice.
-- Available applications come from the Windows Shell handler list for the selected file, so the list matches the normal **Open with** menu.
-- Chat delivery cards keep the label they resolved when they mounted; returning to the conversation or reopening the card re-reads the new default.
-- Built and verified against DSH `0.2.2-rc.5` Desktop on Windows; the plugin hooks DSH's existing Session workspace-path query, so a future change to that internal API may require an update.
+- 覆盖按扩展名生效；无扩展名的文件按完整文件名生效。
+- 只影响 DSH 自己的打开控件、文件右键菜单和 **打开方式** 设置页；不会写入 Windows `UserChoice` 或其他系统关联。
+- 如果所选应用之后被卸载，DSH 会回退到系统默认，并在选择弹窗中标记失效的应用。
+- 可选应用来自 Windows Shell 的文件处理程序列表，因此与系统 **打开方式** 菜单一致。
+- 对话中的文件卡片会在挂载时缓存标签；重新进入对话或重新打开卡片后会读取新设置。文件预览标题栏的默认按钮会立即刷新。
+- 已在 Windows 上的 DSH `0.2.2-rc.5` Desktop 中验证。插件依赖 DSH 现有的 Session 工作区路径查询接口；如果未来 DSH 修改该内部接口，可能需要适配。
+
+## 许可
+
+MIT
