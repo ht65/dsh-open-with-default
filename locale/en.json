@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Default app chooser",
+    "description": "Choose which application DSH uses by default for each file type, without changing Windows file associations. The Open with page in the left sidebar groups DSH-supported image, document, code, archive, and media extensions, where you can preset an app, follow the system default, or add another extension. A file preview's header button shows the current default immediately, and the adjacent native open button refreshes after saving."
+  }
+}

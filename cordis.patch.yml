@@ -1,0 +1,3 @@
+- insert:
+    - id: open-with-default
+      name: '@local/dsh-open-with-default'
